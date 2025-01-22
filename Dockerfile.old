@@ -1,0 +1,45 @@
+FROM --platform=linux/amd64 ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get install -y --install-recommends firefox
+RUN apt-get install -y --install-recommends \
+		       libncurses5 libqt4-core libx11-6 \
+                       libsm6 libxi6 libgconf-2-4 libxrender1 \
+                       libxrandr2 libfreetype6 libfontconfig1 \
+                       libxm4 libxp6 libstdc++5 rpcbind \
+                       gcc
+RUN rpcbind
+
+COPY headless-install.sh /
+ADD Xilinx_ISE_DS_14.7_1015_1.tar /xilinx
+ENV TERM xterm-256color
+RUN yes | /xilinx/Xilinx_ISE_DS_14.7_1015_1/bin/lin64/batchxsetup --batch /headless-install.sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN rm -rf /xilinx
+RUN mv /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6 /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6.distrib
+RUN mv /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6.0.8 /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6.0.8.distrib
+RUN ln /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6
+RUN ln /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 /opt/Xilinx/14.7/ISE_DS/ISE/lib/lin64/libstdc++.so.6.0.19
+RUN ln -s /usr/lib/x86_64-linux-gnu/libXpm.so.4 /lib/x86_64-linux-gnu/libXp.so.6
+# ENV LD_LIBRARY_PATH /lib:/lib64:/usr/lib:/usr/lib64
+
+ENV THE_USER=xilinx
+ENV UID_GID=1000
+
+RUN groupadd -g ${UID_GID} ${THE_USER}
+RUN useradd -d /home/${THE_USER} -s /bin/bash -m ${THE_USER} -u ${UID_GID} -g ${UID_GID}
+
+ADD Xilinx.lic /home/${THE_USER}/.Xilinx/
+
+COPY <<EOF /home/${THE_USER}/.config/Xilinx/ISE.conf 
+[14.7]
+Project%20Navigator/TipOfDay/ShowTipAtStartUp=false
+ECS/Settings/ISETEXTEDITOR="bUseSpace=true;bShowWhitespace=false;bShowEol=false;bShowIndent=false;bUseBlackColorScheme=false;tabWidth=4;font=Courier,12,-1,5,50,0,0,0,0,0;longLinesLimit=80;bShowLineNumbers=true;bShowOutline=false;"
+EOF
+
+
+USER ${THE_USER}
+ENV HOME /home/${THE_USER}
+SHELL ["/bin/bash", "-c"]
+CMD source /opt/Xilinx/14.7/ISE_DS/settings64.sh && ise
+
