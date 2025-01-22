@@ -15,7 +15,6 @@ use_multiple_cores=8
 
 application=Acquire or Manage a License Key::1
 
-
 ################################################################
 # ISE WebPACK, uncomment this block and
 # comment all other blocks to install ISE WebPACK
@@ -26,7 +25,6 @@ application=Acquire or Manage a License Key::1
 #application=Install Linux System Generator Info XML::0
 #application=Ensure Linux System Generator Symlinks::0
 #application=Install Cable Drivers::0
-
 
 ################################################################
 # ISE Design Suite Logic Edition, uncomment this block and
@@ -41,7 +39,6 @@ application=Acquire or Manage a License Key::1
 # application=Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)::0
 # application=Install Cable Drivers::0
 
-
 ################################################################
 # ISE Design Suite Embedded Edition, uncomment this block and
 # comment all other blocks to install ISE Design Suite Embedded Edition
@@ -54,7 +51,6 @@ application=Acquire or Manage a License Key::1
 # application=Configure WebTalk::0
 # application=Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)::0
 # application=Install Cable Drivers::0
-
 
 ################################################################
 # ISE Design Suite DSP Edition, uncomment this block and
@@ -70,7 +66,6 @@ application=Acquire or Manage a License Key::1
 # application=Install Cable Drivers::0
 # application=Version Equalizer::0
 
-
 ################################################################
 # ISE Design Suite System Edition, uncomment this block and
 # comment all other blocks to install ISE Design Suite System Edition
@@ -81,10 +76,9 @@ application=setupEnv.sh::0
 application=Ensure Linux System Generator Symlinks::0
 application=Install Linux System Generator Info XML::0
 application=Configure WebTalk::0
-application=Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)::0
+application="Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)"::0
 application=Install Cable Drivers::0
 application=Version Equalizer::0
-
 
 ################################################################
 # Lab Tools - Standalone Installation, uncomment this block and
