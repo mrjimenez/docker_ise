@@ -4,13 +4,16 @@
 # Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 ################################################################################
 
+# shellcheck disable=SC2034
 destination_dir=/opt/Xilinx
 
 # &Import tool preferences from previous version
+# shellcheck disable=SC2034
 copy_preferences=Y
 
 # &Use multiple CPU cores for faster installation
 # Enabling this option will speed up installation but may slow down other active applications.
+# shellcheck disable=SC2034
 use_multiple_cores=8
 
 application=Acquire or Manage a License Key::1
