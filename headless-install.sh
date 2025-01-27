@@ -79,7 +79,7 @@ application=setupEnv.sh::0
 application=Ensure Linux System Generator Symlinks::0
 application=Install Linux System Generator Info XML::0
 application=Configure WebTalk::0
-application="Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)"::0
+application=Enable WebTalk to send software, IP and device usage statistics to Xilinx (Always enabled for WebPACK license)::0
 application=Install Cable Drivers::0
 application=Version Equalizer::0
 
