@@ -4,15 +4,22 @@ mkdir -p config
 
 USER=xilinx
 
-# DISPLAY=`ipconfig getifaddr en0`:0
+#DISPLAY=$(ifconfig br0 | awk '/inet / {print $6}'):0
+#echo "$DISPLAY"
 
-docker run -it \
+# Set XAUTHORITY, if not set
+XAUTHORITY="${XAUTHORITY:-${HOME}/.Xauthority}"
+#echo "$XAUTHORITY"
+
+docker run \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        -v "$HOME"/.Xauthority:/home/$USER/.Xauthority:ro \
-        -e DISPLAY="$DISPLAY" \
+        -v "$XAUTHORITY":/home/"$USER"/.Xauthority:ro \
         -v "$HOME":/home/$USER/shared \
-        -v "$PWD"/config:/home/$USER/.config/Xilinx \
+        -v "$PWD"/config:/home/"$USER"/.config/Xilinx \
         -v /etc/localtime:/etc/localtime:ro \
         -e QT_X11_NO_MITSHM=1 \
+        -e DISPLAY="$DISPLAY" \
+        -i -t \
         --net=host --ipc=host \
         xilinx_ise
+#bash
