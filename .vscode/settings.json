@@ -16,6 +16,7 @@
 		"gcda",
 		"gcno",
 		"getifaddr",
+		"inet",
 		"ISETEXTEDITOR",
 		"kicad",
 		"libfontconfig",
