@@ -15,7 +15,7 @@ docker run \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v "$XAUTHORITY":/home/"$USER"/.Xauthority:ro \
         -v "$HOME":/home/$USER/shared \
-        -v "$PWD"/config:/home/"$USER"/.config/Xilinx \
+        -v /home/"$USER"/.config/Xilinx:/home/"$USER"/.config/Xilinx \
         -v /etc/localtime:/etc/localtime:ro \
         -e QT_X11_NO_MITSHM=1 \
         -e DISPLAY="$DISPLAY" \
