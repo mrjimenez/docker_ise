@@ -16,6 +16,7 @@ docker run \
         -e QT_X11_NO_MITSHM=1 \
         -e DISPLAY="$DISPLAY" \
         -i -t \
+        --name docker_ise \
         --net=host --ipc=host \
         xilinx_ise
 #bash
