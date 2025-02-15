@@ -20,8 +20,20 @@ The folder `~/.config/.Xilinx/` is used to store Xilinx configuration files in t
 ## 2. How to use it
 
 ```bash
-# On the first time, you have to create the docker image
+# Clone the repo
+git clone git@github.com:mrjimenez/docker_ise.git
+cd docker_ise
+
+# If you have a license file in ~/.Xilinx/Xilinx.lic, you don't have to do anything.
+# Otherwise, copy the license file to this directory.
+# cp /some/path/Xilinx.lic .
+
+# Hard link or copy the tar ball. Download it from the Xilinx (now AMD) site.
+ln /some/other/path/Xilinx_ISE_DS_14.7_1015_1.tar Xilinx_ISE_DS_14.7_1015_1.tar
+
+# Docker image creation. Do this only on the first time.
 ./create_image.sh
+
 # After that, just run this command to start ISE
 ./run_container.sh
 ```
