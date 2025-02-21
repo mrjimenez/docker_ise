@@ -3,6 +3,9 @@
 #DISPLAY=$(ifconfig br0 | awk '/inet / {print $6}'):0
 #echo "$DISPLAY"
 
+# Set MAC Address
+LICENSE_MAC=${LICENSE_MAC:-"01:ab:23:cd:45:ef"}
+
 # Set XAUTHORITY, if not set
 XAUTHORITY="${XAUTHORITY:-${HOME}/.Xauthority}"
 #echo "$XAUTHORITY"
@@ -19,5 +22,6 @@ docker run \
         --rm \
         --name docker_ise \
         --net=host --ipc=host \
+        --mac-address $LICENSE_MAC \
         xilinx_ise
 #bash
